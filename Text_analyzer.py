@@ -30,7 +30,7 @@ username = input("username:")
 password = input("password:")
 print(oddelovac)
 
-if username in users and password in list(users.values()):
+if username in users and password == users.get(username):
     print("Welcome to app,", username)
     print("We have 3 texts to be analyzed.")
     print(oddelovac)
@@ -39,12 +39,19 @@ else:
     print(oddelovac)
     quit()
 
-volba = int(input("Enter a number btw. 1 and 3 to select: "))
+volba = input("Enter a number btw. 1 and 3 to select: ")
 print(oddelovac)
+
+if not volba.isnumeric():
+    print("Choice not availabe, terminating")
+    quit()
+else:
+    volba = int(volba)
 
 if not 0 < volba <= len(TEXTS):
     print("Choice not availabe, terminating")
     quit()
+
 # prevede zvoleny text na list
 textlist = TEXTS[volba-1].split()
 
@@ -65,6 +72,7 @@ print("There are", len(textlist), "words in selected text.")
 print("There are", len(titlecase), "titlecase words.")
 print("There are", len(uppercase), "uppercase words.")
 print("There are", len(lowercase), "lowercase words.")
+print("There are", len(numeric), "numeric strings.")
 print("The sum of all the numbers", sum(numeric))
 
 # ocisti jednotliva v listu textlist od znaku ,.
